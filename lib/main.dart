@@ -16,7 +16,7 @@ import './screens/openingPlayers_screen.dart';
 void main() => runApp(MyApp());
 
 class MyApp extends StatefulWidget {
-  @override 
+  @override
   _MyAppState createState() => _MyAppState();
 }
 
@@ -27,15 +27,13 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       title: 'Cricket Man',
       theme: ThemeData(
-        primarySwatch: Colors.red, 
+        primarySwatch: Colors.red,
         accentColor: Colors.white,
         fontFamily: 'Poppins',
       ),
       home: SingleMatchScreen(),
       //Navigation routes
       routes: {
-        // LoginScreen.routeName: (ctx) => LoginScreen(),
-        // RegisterScreen.routeName: (ctx) => RegisterScreen(),
         DashboardScreen.routeName: (ctx) => DashboardScreen(),
         SingleMatchScreen.routeName: (ctx) => SingleMatchScreen(),
         OpeningPlayersScreen.routeName: (ctx) => OpeningPlayersScreen(),
