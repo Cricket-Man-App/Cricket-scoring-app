@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 
 //screen imports
 // import './screens/greeting_screen.dart';
-import './screens/register_screen.dart';
+// import './screens/register_screen.dart';
 import './screens/dashboard_screen.dart';
-import './screens/login_screen.dart';
+// import './screens/login_screen.dart';
 import './screens/singleMatch_screen.dart';
 import './screens/openingPlayers_screen.dart';
 
