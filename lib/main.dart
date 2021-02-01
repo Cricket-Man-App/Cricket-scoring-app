@@ -1,17 +1,14 @@
 //packages import
-import 'package:cricket_scoring_app/screens/scoreboard_screen.dart';
 import 'package:flutter/material.dart';
 
 //screen imports
-// import './screens/greeting_screen.dart';
-// import './screens/register_screen.dart';
-import './screens/dashboard_screen.dart';
-// import './screens/login_screen.dart';
+import './screens/scoreboard_screen.dart';
 import './screens/singleMatch_screen.dart';
-import './screens/openingPlayers_screen.dart';
+import './screens/openersDetail_screen.dart';
+import './screens/extrasDetail_screen.dart';
+import './screens/newBatsman_screen.dart';
+import './screens/newBowler_screen.dart';
 
-//widget imports
-// import './widgets/bottomNavigationBar.dart';
 
 void main() => runApp(MyApp());
 
@@ -30,14 +27,25 @@ class _MyAppState extends State<MyApp> {
         primarySwatch: Colors.red,
         accentColor: Colors.white,
         fontFamily: 'Poppins',
+        textTheme: TextTheme(
+          headline5: TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold),
+          headline6: TextStyle(
+            fontSize: 22.0,
+          ),
+          bodyText2: TextStyle(
+            fontSize: 18.0,
+          ),
+        ),
       ),
       home: SingleMatchScreen(),
       //Navigation routes
       routes: {
-        DashboardScreen.routeName: (ctx) => DashboardScreen(),
         SingleMatchScreen.routeName: (ctx) => SingleMatchScreen(),
-        OpeningPlayersScreen.routeName: (ctx) => OpeningPlayersScreen(),
-        ScoreBoardScreen.routeName: (ctx) => ScoreBoardScreen()
+        OpenersDetailScreen.routeName: (ctx) => OpenersDetailScreen(),
+        ExtrasDetailScreen.routeName: (ctx) => ExtrasDetailScreen(),
+        ScoreBoardScreen.routeName: (ctx) => ScoreBoardScreen(),
+        NewBatsmanScreen.routeName: (ctx) => NewBatsmanScreen(),
+        NewBowlerScreen.routeName: (ctx) => NewBowlerScreen(),
       },
     );
   }

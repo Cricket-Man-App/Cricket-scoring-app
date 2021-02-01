@@ -1,9 +1,12 @@
 //package imports
+import 'dart:ui';
+import 'package:cricket_scoring_app/widgets/extrasPad.dart';
 import 'package:flutter/material.dart';
 
 //widgets imports
-import '../widgets/currentPlayersScore.dart';
+import '../widgets/currentPlayersDetail_screen.dart';
 import '../widgets/thisOver.dart';
+import '../widgets/scorePad.dart';
 
 class ScoreBoardScreen extends StatefulWidget {
   static const routeName = './scoreboard';
@@ -16,109 +19,150 @@ class _ScoreBoardScreenState extends State<ScoreBoardScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Scoreboard'),
+        title: const Text('Scoreboard'),
       ),
-      body: SingleChildScrollView(
-        child: Container(
-          child: Column(
-            children: [
-              Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(15.0),
-                    child: Container(
-                      width: 340,
-                      height: 98,
-                      child: Column(
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () {
+          // Navigator.of(context).pushNamed(ExtrasDetailScreen.routeName);
+        },
+        label: Text(
+          'Save',
+          style: TextStyle(color: Colors.white),
+        ),
+        backgroundColor: Theme.of(context).primaryColor,
+      ),
+      body: Container(
+        child: Column(
+          children: [
+            Container(
+              width: double.infinity,
+              height: 150,
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(20.0, 10, 20.0, 30),
+                child: Card(
+                  color: Theme.of(context).primaryColor,
+                  child: Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        // crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Column(
-                            children: [
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.all(0.0),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Padding(
-                                          padding: const EdgeInsets.symmetric(
-                                              vertical: 2.0),
-                                          child: Text(
-                                            'CSK',
-                                            style: TextStyle(
-                                                fontSize: 20,
-                                                fontWeight: FontWeight.bold,
-                                                color: Theme.of(context)
-                                                    .primaryColor),
-                                          ),
-                                        ),
-                                        Text(
-                                          '200-3',
-                                          style: TextStyle(fontSize: 20),
-                                        ),
-                                        Text(
-                                          'Overs - 20.0',
-                                          style: TextStyle(fontSize: 20),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(2.0),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Padding(
-                                          padding: const EdgeInsets.symmetric(
-                                              vertical: 2.0),
-                                          child: Text(
-                                            'RCB',
-                                            style: TextStyle(
-                                                fontSize: 20,
-                                                fontWeight: FontWeight.bold,
-                                                color: Theme.of(context)
-                                                    .primaryColor),
-                                          ),
-                                        ),
-                                        Text(
-                                          '0-0',
-                                          style: TextStyle(fontSize: 20),
-                                        ),
-                                        Text(
-                                          'Overs - 0.0',
-                                          style: TextStyle(fontSize: 20),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ],
+                          Padding(
+                            padding: const EdgeInsets.all(12.0),
+                            child: Column(
+                              children: [
+                                Text(
+                                  'CSK',
+                                  style: TextStyle(color: Colors.white),
+                                )
+                              ],
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(12.0),
+                            child: Column(
+                              children: [
+                                Text(
+                                  '200/5',
+                                  style: TextStyle(color: Colors.white),
+                                )
+                              ],
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(12.0),
+                            child: Column(
+                              children: [
+                                Text(
+                                  '20.0 Overs',
+                                  style: TextStyle(color: Colors.white),
+                                )
+                              ],
+                            ),
                           ),
                         ],
                       ),
-                    ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        // crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(12.0),
+                            child: Column(
+                              children: [
+                                Text(
+                                  'RCB',
+                                  style: TextStyle(color: Colors.white),
+                                )
+                              ],
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(12.0),
+                            child: Column(
+                              children: [
+                                Text(
+                                  '7/0',
+                                  style: TextStyle(color: Colors.white),
+                                )
+                              ],
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(12.0),
+                            child: Column(
+                              children: [
+                                Text(
+                                  '1.0 Overs',
+                                  style: TextStyle(color: Colors.white),
+                                )
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                      // Row(
+                      //   mainAxisAlignment: MainAxisAlignment.start,
+                      //   crossAxisAlignment: CrossAxisAlignment.start,
+                      //   children: [
+                      //     Padding(
+                      //       padding: const EdgeInsets.all(10.0),
+                      //       child: Column(
+                      //         children: [
+                      //           Text(
+                      //             'RCB need 194 runs in 19 overs at 10.21.RR',
+                      //             style: TextStyle(
+                      //                 color: Colors.white, fontSize: 16),
+                      //           )
+                      //         ],
+                      //       ),
+                      //     ),
+                      //   ],
+                      // ),
+                    ],
                   ),
+                ),
+              ),
+            ),
+            Container(
+              child: CurrentPlayersDetail(),
+            ),
+            Container(
+              child: ThisOver(),
+            ),
+            Container(
+              child: Column(
+                children: [
+                  ScorePad(),
                 ],
               ),
-              Row(children: [
-                Container(
-                  child: CurrentPlayersScore(),
-                )
-              ]),
-              Row(
-                children: [
-                  Container(
-                    child: ThisOver(),
-                  )
-                ],
-              )
-            ],
-          ),
+            ),
+            Container(
+              child: Column(
+                children: [ExtrasPad()],
+              ),
+            ),
+          ],
         ),
       ),
     );

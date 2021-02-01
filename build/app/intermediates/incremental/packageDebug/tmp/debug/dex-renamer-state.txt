@@ -1,4 +1,4 @@
-#Sun Jan 17 15:38:30 IST 2021
-base.0=D\:\\Flutter\\cricket_scoring_app\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
+#Mon Feb 01 05:47:31 IST 2021
+base.0=D\:\\Flutter\\Projects\\Cricket-scoring-app\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
 path.0=classes.dex
 renamed.0=classes.dex

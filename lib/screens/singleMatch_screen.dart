@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../widgets/appBar.dart';
-import '../screens/openingPlayers_screen.dart';
+import './extrasDetail_screen.dart';
+import '../widgets/appDrawer.dart';
 
 enum toss { hostTeam, vistorTeam }
 
@@ -13,6 +13,10 @@ class SingleMatchScreen extends StatefulWidget {
 }
 
 class _SingleMatchScreenState extends State<SingleMatchScreen> {
+  bool tossHost = false;
+  bool tossVistor = false;
+  bool optedToHost = false;
+  bool optedToVisitor = false;
   int selectedRadio;
   @override
   void initState() {
@@ -30,8 +34,23 @@ class _SingleMatchScreenState extends State<SingleMatchScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Cricket Man'),
+        title: const Text('Cricket Man'),
       ),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () {
+          Navigator.of(context).pushNamed(ExtrasDetailScreen.routeName);
+        },
+        label: Text(
+          'Save & Next',
+          style: TextStyle(color: Colors.white),
+        ),
+        backgroundColor: Theme.of(context).primaryColor,
+      ),
+      // bottomNavigationBar: BottomNavigationBar(
+      //   items: [
+      //     BottomNavigationBarItem(icon: Icon(Icons.home))
+      //   ],
+      // ),
       drawer: AppDrawer(),
       body: SingleChildScrollView(
         child: Container(
@@ -49,152 +68,176 @@ class _SingleMatchScreenState extends State<SingleMatchScreen> {
                           margin: EdgeInsets.all(10),
                           child: Column(
                             children: [
-                              Card(
-                                child: Padding(
-                                  padding: const EdgeInsets.all(15.0),
-                                  child: Form(
-                                    child: Column(
-                                      children: [
-                                        TextField(
-                                          decoration: InputDecoration(
+                              Text('Teams',
+                                  style: Theme.of(context).textTheme.headline6),
+                              Padding(
+                                padding: const EdgeInsets.all(15.0),
+                                child: Form(
+                                  child: Column(
+                                    children: [
+                                      TextField(
+                                        decoration: InputDecoration(
+                                          disabledBorder: OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                  color: Colors.grey),
+                                              borderRadius:
+                                                  BorderRadius.circular(10.0)),
+                                          hintText: "Host Team",
+                                        ),
+                                        keyboardType: TextInputType.text,
+                                      ),
+                                      SizedBox(
+                                        height: 15,
+                                      ),
+                                      TextField(
+                                        decoration: InputDecoration(
                                             disabledBorder: OutlineInputBorder(
                                                 borderSide: BorderSide(
                                                     color: Colors.grey),
                                                 borderRadius:
                                                     BorderRadius.circular(
                                                         10.0)),
-                                            hintText: "Host Team",
-                                          ),
-                                          keyboardType: TextInputType.text,
-                                        ),
-                                        SizedBox(
-                                          height: 15,
-                                        ),
-                                        TextField(
-                                          decoration: InputDecoration(
-                                              disabledBorder:
-                                                  OutlineInputBorder(
-                                                      borderSide: BorderSide(
-                                                          color: Colors.grey),
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              10.0)),
-                                              hintText: "Visitor Team"),
-                                          keyboardType: TextInputType.text,
-                                        ),
-                                      ],
-                                    ),
+                                            hintText: "Visitor Team"),
+                                        keyboardType: TextInputType.text,
+                                      ),
+                                    ],
                                   ),
                                 ),
+                              ),
+                              SizedBox(height: 20),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text('Toss',
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .headline6),
+                                ],
                               ),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Text('Toss won by'),
                                   ButtonBar(
                                     alignment: MainAxisAlignment.center,
                                     children: [
-                                      Radio(
-                                          value: 1,
-                                          groupValue: selectedRadio,
-                                          activeColor: Colors.red,
-                                          onChanged: (val) {
-                                            print('Print 1');
-                                            setSelectedRadio(val);
-                                          }),
                                       Text('Host'),
-                                      Radio(
-                                          value: 2,
-                                          groupValue: selectedRadio,
+                                      ConstrainedBox(
+                                        constraints: BoxConstraints.tightFor(
+                                            width: 60, height: 60),
+                                        child: Checkbox(
+                                          checkColor: Colors.greenAccent,
                                           activeColor: Colors.red,
-                                          onChanged: (val) {
-                                            print('Print 1');
-                                            setSelectedRadio(val);
-                                          }),
-                                      Text('Vistor'),
+                                          value: this.tossHost,
+                                          onChanged: (bool value) {
+                                            setState(() {
+                                              this.tossHost = value;
+                                            });
+                                          },
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        width: 40,
+                                      ),
+                                      Text('Vistors'),
+                                      ConstrainedBox(
+                                        constraints: BoxConstraints.tightFor(
+                                            width: 60, height: 60),
+                                        child: Checkbox(
+                                          checkColor: Colors.greenAccent,
+                                          activeColor: Colors.red,
+                                          value: this.tossVistor,
+                                          onChanged: (bool value) {
+                                            setState(() {
+                                              this.tossVistor = value;
+                                            });
+                                          },
+                                        ),
+                                      ),
                                     ],
                                   )
                                 ],
                               ),
                               Divider(
-                                height: 10,
+                                height: 20,
                               ),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Text('Opted to'),
+                                  Text('Opted to',
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .headline6),
+                                ],
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
                                   ButtonBar(
                                     alignment: MainAxisAlignment.center,
                                     children: [
-                                      Radio(
-                                          value: 1,
-                                          groupValue: selectedRadio,
-                                          activeColor: Colors.red,
-                                          onChanged: (val) {
-                                            print('Print 1');
-                                            setSelectedRadio(val);
-                                          }),
                                       Text('Bat'),
-                                      Radio(
-                                          value: 2,
-                                          groupValue: selectedRadio,
+                                      ConstrainedBox(
+                                        constraints: BoxConstraints.tightFor(
+                                            width: 60, height: 60),
+                                        child: Checkbox(
+                                          checkColor: Colors.greenAccent,
                                           activeColor: Colors.red,
-                                          onChanged: (val) {
-                                            print('Print 1');
-                                            setSelectedRadio(val);
-                                          }),
+                                          value: this.optedToHost,
+                                          onChanged: (bool value) {
+                                            setState(() {
+                                              this.optedToHost = value;
+                                            });
+                                          },
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        width: 40,
+                                      ),
                                       Text('Bowl'),
+                                      ConstrainedBox(
+                                        constraints: BoxConstraints.tightFor(
+                                            width: 60, height: 60),
+                                        child: Checkbox(
+                                          checkColor: Colors.greenAccent,
+                                          activeColor: Colors.red,
+                                          value: this.optedToVisitor,
+                                          onChanged: (bool value) {
+                                            setState(() {
+                                              this.optedToVisitor = value;
+                                            });
+                                          },
+                                        ),
+                                      ),
                                     ],
                                   )
                                 ],
                               ),
-                              Padding(
-                                padding: const EdgeInsets.all(15.0),
-                                child: Column(
-                                  children: [
-                                    TextField(
-                                      decoration: InputDecoration(
-                                          disabledBorder: OutlineInputBorder(
-                                              borderSide: BorderSide(
-                                                  color: Colors.grey),
-                                              borderRadius:
-                                                  BorderRadius.circular(10.0)),
-                                          hintText: "Overs"),
-                                      keyboardType: TextInputType.number,
-                                    ),
-                                    SizedBox(
-                                      height: 15,
-                                    ),
-                                    TextField(
-                                      decoration: InputDecoration(
-                                          disabledBorder: OutlineInputBorder(
-                                              borderSide: BorderSide(
-                                                  color: Colors.grey),
-                                              borderRadius:
-                                                  BorderRadius.circular(10.0)),
-                                          hintText: "Players per team"),
-                                      keyboardType: TextInputType.number,
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          vertical: 20),
-                                      child: RaisedButton(
-                                          color: Colors.red,
-                                          child: Text(
-                                            'Start match',
-                                            style: TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 20,
-                                                fontFamily: 'Poppins'),
-                                          ),
-                                          onPressed: () {
-                                            Navigator.of(context).pushNamed(
-                                                OpeningPlayersScreen.routeName);
-                                          }),
-                                    )
-                                  ],
-                                ),
-                              )
+                              // Padding(
+                              //   padding: const EdgeInsets.all(15.0),
+                              //   child: Column(
+                              //     children: [
+                              //       Padding(
+                              //           padding: const EdgeInsets.symmetric(
+                              //               vertical: 20),
+                              //           child: ElevatedButton(
+                              //             child: Text('Next',
+                              //                 style: TextStyle(fontSize: 25)),
+                              //             onPressed: () {
+                              //               // Navigator.of(context).pushNamed(
+                              //               //     ExtrasDetailScreen.routeName);
+                              //             },
+                              //             style: ElevatedButton.styleFrom(
+                              //                 shape:
+                              //                     const BeveledRectangleBorder(
+                              //                         borderRadius:
+                              //                             BorderRadius.all(
+                              //                                 Radius.circular(
+                              //                                     5))),
+                              //                 elevation: 5),
+                              //           ))
+                              //     ],
+                              //   ),
+                              // )
                             ],
                           ),
                         ))
